@@ -42,7 +42,7 @@ public class Question_emo extends AppCompatActivity {
 
     }
 
-
+// test
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
