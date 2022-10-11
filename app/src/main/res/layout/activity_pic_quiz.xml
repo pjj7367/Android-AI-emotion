@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Pic_quiz">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사진의 감정을 맞혀보세요!"
+        android:textColor="#DC1212"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/iv_emotion"
+        app:layout_constraintEnd_toEndOf="@+id/iv_emotion"
+        app:layout_constraintStart_toStartOf="@+id/iv_emotion" />
+
+    <ImageView
+        android:id="@+id/iv_emotion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8"
+        app:srcCompat="@drawable/emotion_example" />
+
+
+    <TextView
+        android:id="@+id/tv_happy"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/button_box_long"
+        android:gravity="center"
+        android:text="기쁨"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_anxious"
+        app:layout_constraintEnd_toStartOf="@+id/tv_anxious"
+        app:layout_constraintTop_toTopOf="@+id/tv_anxious"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_anxious"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_box_long"
+        android:gravity="center"
+        android:text="당황"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_emotion"
+        app:layout_constraintVertical_bias="0.31"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_embarrassed"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/button_box_long"
+        android:gravity="center"
+        android:text="불안"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_anxious"
+        app:layout_constraintStart_toEndOf="@+id/tv_anxious"
+        app:layout_constraintTop_toTopOf="@+id/tv_anxious"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_sad"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/button_box_long"
+        android:gravity="center"
+        android:text="슬픔"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_angry"
+        app:layout_constraintEnd_toStartOf="@+id/tv_angry"
+        app:layout_constraintTop_toTopOf="@+id/tv_angry"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_angry"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_box_long"
+        android:gravity="center"
+        android:text="분노"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_anxious"
+        app:layout_constraintVertical_bias="0.18"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_hurt"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/button_box_long"
+        android:gravity="center"
+        android:text="상처"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_angry"
+        app:layout_constraintStart_toEndOf="@+id/tv_angry"
+        app:layout_constraintTop_toTopOf="@+id/tv_angry"
+        app:layout_constraintWidth_percent="0.7" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

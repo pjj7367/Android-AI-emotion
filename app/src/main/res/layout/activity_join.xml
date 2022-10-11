@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Join">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/whale" />
+
+    <EditText
+        android:id="@+id/tv_face"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="94dp"
+        android:background="@drawable/button_box_long"
+        android:paddingLeft="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/ready_camera"
+        android:layout_width="66dp"
+        android:layout_height="0dp"
+        android:text="아이디"
+        app:layout_constraintBottom_toTopOf="@+id/tv_face"
+        app:layout_constraintStart_toStartOf="@+id/tv_face" />
+
+    <TextView
+        android:id="@+id/tv_pw"
+        android:layout_width="66dp"
+        android:layout_height="0dp"
+        android:text="비밀번호"
+        app:layout_constraintBottom_toTopOf="@+id/et_pw"
+        app:layout_constraintStart_toStartOf="@+id/et_pw" />
+
+    <EditText
+        android:id="@+id/et_pw"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/button_box_long"
+        android:inputType="textPassword"
+        android:paddingLeft="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_face"
+        app:layout_constraintWidth_percent="0.7" />
+
+
+    <TextView
+        android:id="@+id/tv_cp"
+        android:layout_width="89dp"
+        android:layout_height="21dp"
+        android:text="비밀번호 확인"
+        app:layout_constraintBottom_toTopOf="@+id/et_cp"
+        app:layout_constraintStart_toStartOf="@+id/et_cp" />
+
+    <EditText
+        android:id="@+id/et_cp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/button_box_long"
+        android:inputType="textPassword"
+        android:paddingLeft="13dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_pw"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/et_pw"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <LinearLayout
+        android:id="@+id/join_button"
+        android:layout_width="125dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="회원가입"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

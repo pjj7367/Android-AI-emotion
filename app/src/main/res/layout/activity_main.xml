@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8"
+        app:srcCompat="@drawable/whale" />
+
+    <TextView
+        android:id="@+id/tv_face"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="94dp"
+        android:background="@drawable/button_box_long"
+        android:gravity="center"
+        android:text="사진 감정 맞추기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_sen"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_box_long"
+        android:gravity="center"
+        android:text="글 감정 맞추기"
+        app:layout_constraintEnd_toEndOf="@+id/tv_face"
+        app:layout_constraintStart_toStartOf="@+id/tv_face"
+        app:layout_constraintTop_toBottomOf="@+id/tv_face"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/tv_emotion"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_box_long"
+        android:gravity="center"
+        android:text="궁금한 감정"
+        app:layout_constraintEnd_toEndOf="@+id/tv_sen"
+        app:layout_constraintStart_toStartOf="@+id/tv_sen"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sen"
+        app:layout_constraintWidth_percent="0.7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
