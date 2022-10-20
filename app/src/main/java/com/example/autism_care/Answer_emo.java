@@ -11,12 +11,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
 
 public class Answer_emo extends AppCompatActivity {
 
     ImageView iv_emotion;
+    TextView tv_answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +26,19 @@ public class Answer_emo extends AppCompatActivity {
         setContentView(R.layout.activity_answer_emo);
 
         iv_emotion = findViewById(R.id.iv_emotion);
+        tv_answer = findViewById(R.id.tv_answer);
 
         Intent intent = getIntent();
 
         byte[] arr = getIntent().getByteArrayExtra("image");
+        int emo = getIntent().getIntExtra("emotion", 0);
         Bitmap image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
+
+        // 넘어온게 값 result이 1
+        // ar[] = [해피, 세드, 어쩌구]
+        // emo = ar[result]
         iv_emotion.setImageBitmap(image);
+        tv_answer.setText("넘어온 감정 : "+emo);
 
     }
 }
