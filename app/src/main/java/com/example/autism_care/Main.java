@@ -15,7 +15,7 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv_face = findViewById(R.id.tv_face);
+        tv_face = findViewById(R.id.et_id);
         tv_emotion = findViewById(R.id.tv_emotion);
 
         tv_face.setOnClickListener(view -> {

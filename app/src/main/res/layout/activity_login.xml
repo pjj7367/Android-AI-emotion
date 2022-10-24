@@ -17,15 +17,16 @@
         app:srcCompat="@drawable/whale" />
 
     <EditText
-        android:id="@+id/tv_face"
+        android:id="@+id/et_id"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="70dp"
         android:background="@drawable/button_box_long"
         android:paddingLeft="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.23000002"
         app:layout_constraintWidth_percent="0.7" />
 
     <TextView
@@ -33,8 +34,8 @@
         android:layout_width="66dp"
         android:layout_height="0dp"
         android:text="아이디"
-        app:layout_constraintBottom_toTopOf="@+id/tv_face"
-        app:layout_constraintStart_toStartOf="@+id/tv_face" />
+        app:layout_constraintBottom_toTopOf="@+id/et_id"
+        app:layout_constraintStart_toStartOf="@+id/et_id" />
 
 
     <TextView
@@ -49,13 +50,14 @@
         android:id="@+id/et_pw"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
         android:background="@drawable/button_box_long"
-        android:paddingLeft="13dp"
         android:inputType="textPassword"
+        android:paddingLeft="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_face"
+        app:layout_constraintTop_toBottomOf="@+id/et_id"
+        app:layout_constraintVertical_bias="0.15"
         app:layout_constraintWidth_percent="0.7" />
 
 
@@ -63,11 +65,12 @@
         android:id="@+id/login_button"
         android:layout_width="125dp"
         android:layout_height="56dp"
-        android:layout_marginTop="50dp"
         android:background="@drawable/button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_pw">
+        app:layout_constraintTop_toBottomOf="@+id/et_pw"
+        app:layout_constraintVertical_bias="0.2">
 
         <TextView
             android:layout_width="match_parent"
@@ -81,11 +84,12 @@
         android:id="@+id/join_button"
         android:layout_width="125dp"
         android:layout_height="56dp"
-        android:layout_marginTop="18dp"
         android:background="@drawable/button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/login_button"
         app:layout_constraintStart_toStartOf="@+id/login_button"
-        app:layout_constraintTop_toBottomOf="@+id/login_button">
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.14">
 
         <TextView
             android:layout_width="match_parent"

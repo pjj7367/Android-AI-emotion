@@ -18,25 +18,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/whale" />
 
-    <EditText
-        android:id="@+id/tv_face"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="94dp"
-        android:background="@drawable/button_box_long"
-        android:paddingLeft="13dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintWidth_percent="0.7" />
-
     <TextView
         android:id="@+id/ready_camera"
         android:layout_width="66dp"
         android:layout_height="0dp"
         android:text="아이디"
-        app:layout_constraintBottom_toTopOf="@+id/tv_face"
-        app:layout_constraintStart_toStartOf="@+id/tv_face" />
+        app:layout_constraintBottom_toTopOf="@+id/et_id"
+        app:layout_constraintStart_toStartOf="@+id/et_id" />
+
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_box_long"
+        android:paddingLeft="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintWidth_percent="0.7" />
 
     <TextView
         android:id="@+id/tv_pw"
@@ -50,15 +51,15 @@
         android:id="@+id/et_pw"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/button_box_long"
         android:inputType="textPassword"
         android:paddingLeft="13dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_face"
+        app:layout_constraintTop_toBottomOf="@+id/et_id"
         app:layout_constraintWidth_percent="0.7" />
-
 
     <TextView
         android:id="@+id/tv_cp"
@@ -72,7 +73,7 @@
         android:id="@+id/et_cp"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/button_box_long"
         android:inputType="textPassword"
         android:paddingLeft="13dp"
@@ -82,15 +83,69 @@
         app:layout_constraintTop_toBottomOf="@+id/et_pw"
         app:layout_constraintWidth_percent="0.7" />
 
+
+    <TextView
+        android:id="@+id/tv_cp3"
+        android:layout_width="89dp"
+        android:layout_height="21dp"
+        android:text="성별"
+        app:layout_constraintBottom_toTopOf="@+id/et_gender"
+        app:layout_constraintStart_toStartOf="@+id/et_gender" />
+
+    <LinearLayout
+        android:id="@+id/et_gender"
+        android:layout_width="130dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/button_box_long"
+        android:inputType="textPassword"
+        android:paddingLeft="13dp"
+        app:layout_constraintStart_toStartOf="@+id/et_cp"
+        app:layout_constraintTop_toBottomOf="@+id/et_cp"
+        app:layout_constraintWidth_percent="0.7"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinner_gender"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/tv_cp4"
+        android:layout_width="89dp"
+        android:layout_height="21dp"
+        android:text="나이"
+        app:layout_constraintBottom_toTopOf="@+id/et_age"
+        app:layout_constraintStart_toStartOf="@+id/et_age" />
+
+    <EditText
+        android:id="@+id/et_age"
+        android:layout_width="130dp"
+        android:layout_height="46dp"
+        android:background="@drawable/button_box_long"
+        android:paddingLeft="13dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_cp"
+        app:layout_constraintTop_toTopOf="@+id/et_gender"
+        app:layout_constraintWidth_percent="0.7"
+        android:inputType="number"/>
+
     <LinearLayout
         android:id="@+id/join_button"
         android:layout_width="125dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="60dp"
+
         android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98">
 
         <TextView
             android:layout_width="match_parent"

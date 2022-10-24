@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/whale" />
 
     <TextView
-        android:id="@+id/tv_face"
+        android:id="@+id/et_id"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="94dp"
@@ -39,9 +39,9 @@
         android:background="@drawable/button_box_long"
         android:gravity="center"
         android:text="글 감정 맞추기"
-        app:layout_constraintEnd_toEndOf="@+id/tv_face"
-        app:layout_constraintStart_toStartOf="@+id/tv_face"
-        app:layout_constraintTop_toBottomOf="@+id/tv_face"
+        app:layout_constraintEnd_toEndOf="@+id/et_id"
+        app:layout_constraintStart_toStartOf="@+id/et_id"
+        app:layout_constraintTop_toBottomOf="@+id/et_id"
         app:layout_constraintWidth_percent="0.7" />
 
     <TextView
