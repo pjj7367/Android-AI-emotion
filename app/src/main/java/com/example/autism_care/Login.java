@@ -58,8 +58,7 @@ public class Login extends AppCompatActivity {
             progress.setMessage("Uploading...");
             progress.show();
             sendLogin(id, pw);
-            Intent intent = new Intent(Login.this, Main.class);
-            startActivity(intent);
+
         });
 
     }
@@ -82,7 +81,11 @@ public class Login extends AppCompatActivity {
 
                         if(status){
                             app.ID = id;
+                            Intent intent = new Intent(Login.this, Main.class);
+                            startActivity(intent);
                             Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

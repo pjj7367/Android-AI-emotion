@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class Main extends AppCompatActivity {
 
-    TextView tv_face, tv_emotion;
+    TextView tv_face, tv_emotion, tv_mypage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,7 @@ public class Main extends AppCompatActivity {
 
         tv_face = findViewById(R.id.et_id);
         tv_emotion = findViewById(R.id.tv_emotion);
+        tv_mypage = findViewById(R.id.tv_mypage);
 
         tv_face.setOnClickListener(view -> {
             Intent intent = new Intent(Main.this, Pic_ready.class);
@@ -25,6 +26,11 @@ public class Main extends AppCompatActivity {
 
         tv_emotion.setOnClickListener(view -> {
             Intent intent = new Intent(Main.this, Question_emo.class);
+            startActivity(intent);
+        });
+
+        tv_mypage.setOnClickListener(view -> {
+            Intent intent = new Intent(Main.this, Mypage.class);
             startActivity(intent);
         });
 
