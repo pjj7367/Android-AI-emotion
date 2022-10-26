@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Pic_quiz extends AppCompatActivity {
+public class Quiz_mix extends AppCompatActivity {
 
     TextView tv_happy, tv_embarrassed, tv_anxious, tv_sad, tv_angry, tv_hurt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pic_quiz);
+        setContentView(R.layout.activity_quiz_mix);
 
         tv_happy = findViewById(R.id.tv_happy);
         tv_embarrassed = findViewById(R.id.tv_embarrassed);
@@ -29,6 +29,9 @@ public class Pic_quiz extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "기쁨 선택", Toast.LENGTH_LONG).show();
             }
         });
+
+
+
 
 
 

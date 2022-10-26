@@ -3,9 +3,7 @@ package com.example.autism_care;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,7 +42,7 @@ public class Join extends AppCompatActivity {
 
         String [] items = {"남","여"};
 
-        et_id = findViewById(R.id.et_id);
+        et_id = findViewById(R.id.tv_video);
         et_pw = findViewById(R.id.et_pw);
         et_cp = findViewById(R.id.et_cp);
         spinner_gender = findViewById(R.id.spinner_gender);

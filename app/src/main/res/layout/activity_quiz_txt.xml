@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Pic_quiz">
+    tools:context=".Quiz_txt">
 
     <TextView
         android:id="@+id/textView"
@@ -110,6 +110,5 @@
         app:layout_constraintStart_toEndOf="@+id/tv_angry"
         app:layout_constraintTop_toTopOf="@+id/tv_angry"
         app:layout_constraintWidth_percent="0.7" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

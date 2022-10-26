@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.autism_care">
+    package="com.example.autism_care" >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -22,7 +22,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Light.NoActionBar"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".Question_video"
+            android:exported="false" />
+        <activity
+            android:name=".Quiz_txt"
+            android:exported="false" />
+        <activity
+            android:name=".Choose_cameratype"
+            android:exported="false" />
+        <activity
+            android:name=".Choose_quiztype"
+            android:exported="false" />
         <activity
             android:name=".Mypage"
             android:exported="false" />
@@ -31,19 +43,18 @@
             android:exported="false" />
         <activity
             android:name=".Agreement_1"
-            android:exported="true"/>
-
+            android:exported="true" />
         <activity
             android:name=".Answer_emo"
             android:exported="false" />
         <activity
-            android:name=".Question_emo"
+            android:name=".Question_img"
             android:exported="false" />
         <activity
-            android:name=".Pic_quiz"
+            android:name=".Quiz_mix"
             android:exported="false" />
         <activity
-            android:name=".Live_camera"
+            android:name=".Quiz_camera"
             android:exported="false" />
         <activity
             android:name=".Pic_ready"
@@ -53,6 +64,7 @@
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

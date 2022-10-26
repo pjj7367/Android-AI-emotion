@@ -2,7 +2,6 @@ package com.example.autism_care;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,7 +37,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        et_id = findViewById(R.id.et_id);
+        et_id = findViewById(R.id.tv_video);
         et_pw = findViewById(R.id.et_pw);
         join_button = findViewById(R.id.join_button);
         login_button = findViewById(R.id.login_button);

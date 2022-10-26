@@ -19,7 +19,7 @@ public class Pic_ready extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic_ready);
 
-        tv_face = findViewById(R.id.et_id);
+        tv_face = findViewById(R.id.tv_video);
         tv_quiz = findViewById(R.id.tv_quiz);
         app = (MyApp) getApplication();
 
@@ -27,12 +27,12 @@ public class Pic_ready extends AppCompatActivity {
         Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
 
         tv_face.setOnClickListener(view -> {
-            Intent intent = new Intent(Pic_ready.this, Live_camera.class);
+            Intent intent = new Intent(Pic_ready.this, Choose_quiztype.class);
             startActivity(intent);
         });
 
         tv_quiz.setOnClickListener(view -> {
-            Intent intent = new Intent(Pic_ready.this, Pic_quiz.class);
+            Intent intent = new Intent(Pic_ready.this, Quiz_mix.class);
             startActivity(intent);
         });
 

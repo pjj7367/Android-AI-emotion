@@ -15,7 +15,7 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv_face = findViewById(R.id.et_id);
+        tv_face = findViewById(R.id.tv_video);
         tv_emotion = findViewById(R.id.tv_emotion);
         tv_mypage = findViewById(R.id.tv_mypage);
 
@@ -25,7 +25,7 @@ public class Main extends AppCompatActivity {
         });
 
         tv_emotion.setOnClickListener(view -> {
-            Intent intent = new Intent(Main.this, Question_emo.class);
+            Intent intent = new Intent(Main.this, Choose_cameratype.class);
             startActivity(intent);
         });
 

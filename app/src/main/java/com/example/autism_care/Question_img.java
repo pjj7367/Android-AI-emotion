@@ -27,9 +27,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class Question_emo extends AppCompatActivity {
+public class Question_img extends AppCompatActivity {
 
 
     LinearLayout ll_upload;
@@ -46,7 +45,7 @@ public class Question_emo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_emo);
+        setContentView(R.layout.activity_question_img);
 
         ll_upload = findViewById(R.id.ll_upload);
 
@@ -67,10 +66,10 @@ public class Question_emo extends AppCompatActivity {
         if (requestCode == PICK_IMAGE) {
             // action
             Toast.makeText(this, "submitted image", Toast.LENGTH_SHORT).show();
-            progress = new ProgressDialog(Question_emo.this);
+            progress = new ProgressDialog(Question_img.this);
             progress.setMessage("Uploading...");
             progress.show();
-            intent = new Intent(Question_emo.this, Answer_emo.class);
+            intent = new Intent(Question_img.this, Answer_emo.class);
 
             Uri imageSelected = data.getData();
 
@@ -126,7 +125,7 @@ public class Question_emo extends AppCompatActivity {
                 },
                 error -> {
                     progress.dismiss();
-                    Toast.makeText(Question_emo.this, "Some error occurred -> "+error, Toast.LENGTH_LONG).show();
+                    Toast.makeText(Question_img.this, "Some error occurred -> "+error, Toast.LENGTH_LONG).show();
                 })
             {
             @Override
@@ -138,7 +137,7 @@ public class Question_emo extends AppCompatActivity {
             }
         };
 
-        queue = Volley.newRequestQueue(Question_emo.this);
+        queue = Volley.newRequestQueue(Question_img.this);
         queue.add(request);
     }
 
