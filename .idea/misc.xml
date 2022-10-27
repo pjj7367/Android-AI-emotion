@@ -22,8 +22,10 @@
         <entry key="..\:/Users/SCLAB/AndroidStudioProjects/Autism_care/app/src/main/res/layout/activity_question_emo.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/SCLAB/AndroidStudioProjects/Autism_care/app/src/main/res/layout/activity_question_img.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/SCLAB/AndroidStudioProjects/Autism_care/app/src/main/res/layout/activity_question_video.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/SCLAB/AndroidStudioProjects/Autism_care/app/src/main/res/layout/activity_quiz_btn.xml" value="0.33" />
         <entry key="..\:/Users/SCLAB/AndroidStudioProjects/Autism_care/app/src/main/res/layout/activity_quiz_camera.xml" value="0.26944444444444443" />
-        <entry key="..\:/Users/SCLAB/AndroidStudioProjects/Autism_care/app/src/main/res/layout/activity_quiz_img.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/SCLAB/AndroidStudioProjects/Autism_care/app/src/main/res/layout/activity_quiz_img.xml" value="0.33" />
+        <entry key="..\:/Users/SCLAB/AndroidStudioProjects/Autism_care/app/src/main/res/layout/activity_quiz_mix.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/SCLAB/AndroidStudioProjects/Autism_care/app/src/main/res/layout/activity_quiz_txt.xml" value="0.3515625" />
       </map>
     </option>

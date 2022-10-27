@@ -54,10 +54,13 @@
             android:name=".Quiz_mix"
             android:exported="false" />
         <activity
-            android:name=".Quiz_camera"
+            android:name=".Quiz_img"
             android:exported="false" />
         <activity
             android:name=".Pic_ready"
+            android:exported="false" />
+        <activity
+            android:name=".Quiz_btn"
             android:exported="false" />
         <activity
             android:name=".Main"
