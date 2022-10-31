@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Quiz_txt">
-
-
 
     <LinearLayout
         android:id="@+id/ll_emo"
@@ -53,11 +52,11 @@
         android:text="내 카메라"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/iv_camera"
-        app:layout_constraintStart_toStartOf="@+id/iv_camera" />
+        app:layout_constraintBottom_toTopOf="@+id/pv_camera"
+        app:layout_constraintStart_toStartOf="@+id/pv_camera" />
 
-    <ImageView
-        android:id="@+id/iv_camera"
+    <androidx.camera.view.PreviewView
+        android:id="@+id/pv_camera"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintWidth_percent="0.8"
@@ -65,7 +64,6 @@
         android:layout_marginTop="85dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_emo"
-        app:srcCompat="@drawable/avartar" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_emo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,8 +31,8 @@ public class Quiz_btn extends AppCompatActivity {
     int select, emotion;
 
 
-    String[] tv_dap_ok = {"기쁜표정 \n 정답입니다❤", "당황표정 \n 정답입니다❤","불안표정 \n 정답입니다❤","슬픈표정 \n 정답입니다❤","분노표정 \n 정답입니다❤","상처표정 \n 정답입니다❤"};
-    String[] tv_dap_no = {"틀렸습니다 \n 답은 기쁨!","틀렸습니다 \n 답은 당황!","틀렸습니다 \n 답은 불안!","틀렸습니다 \n 답은 슬픔!","틀렸습니다 \n 답은 분노!","틀렸습니다 \n 답은 상처!",};
+    String[] tv_dap_ok = {"기쁜표정 \n 정답입니다❤","불안표정 \n 정답입니다❤","당황표정 \n 정답입니다❤","슬픈표정 \n 정답입니다❤","분노표정 \n 정답입니다❤","상처표정 \n 정답입니다❤"};
+    String[] tv_dap_no = {"틀렸습니다 \n 답은 기쁨!","틀렸습니다 \n 답은 불안!","틀렸습니다 \n 답은 당황!","틀렸습니다 \n 답은 슬픔!","틀렸습니다 \n 답은 분노!","틀렸습니다 \n 답은 상처!",};
     // 통신
     Bitmap bitmap;
     String imageString;
@@ -67,8 +67,13 @@ public class Quiz_btn extends AppCompatActivity {
                 select = 0;
 
                 quiz_btn(select, "True");
-                //tv_dap.setText(tv_dap_ok[0]);
-                tv_dap.setVisibility(View.VISIBLE);
+                if (emotion == select){
+                    tv_dap.setText(tv_dap_ok[select]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                } else {
+                    tv_dap.setText(tv_dap_no[emotion]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -77,34 +82,86 @@ public class Quiz_btn extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 select = 1;
+
+
+                if (emotion == select){
+                    quiz_btn(select, "True");
+                    tv_dap.setText(tv_dap_ok[select]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                } else {
+                    quiz_btn(select, "False");
+                    tv_dap.setText(tv_dap_no[emotion]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                }
             }
         });
 
         tv_anxious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "기쁨 선택", Toast.LENGTH_LONG).show();
+                select = 2;
+
+
+                if (emotion == select){
+                    quiz_btn(select, "True");
+                    tv_dap.setText(tv_dap_ok[select]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                } else {
+                    quiz_btn(select, "False");
+                    tv_dap.setText(tv_dap_no[emotion]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                }
             }
         });
 
         tv_sad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "기쁨 선택", Toast.LENGTH_LONG).show();
+               select = 3;
+
+                if (emotion == select){
+                    quiz_btn(select, "True");
+                    tv_dap.setText(tv_dap_ok[select]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                } else {
+                    quiz_btn(select, "False");
+                    tv_dap.setText(tv_dap_no[emotion]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                }
             }
         });
 
         tv_angry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "기쁨 선택", Toast.LENGTH_LONG).show();
+                select = 4;
+
+                if (emotion == select){
+                    quiz_btn(select, "True");
+                    tv_dap.setText(tv_dap_ok[select]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                } else {
+                    quiz_btn(select, "False");
+                    tv_dap.setText(tv_dap_no[emotion]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                }
             }
         });
 
         tv_hurt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "기쁨 선택", Toast.LENGTH_LONG).show();
+                select = 5;
+
+                if (emotion == select){
+                    quiz_btn(select, "True");
+                    tv_dap.setText(tv_dap_ok[select]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                } else {
+                    quiz_btn(select, "False");
+                    tv_dap.setText(tv_dap_no[emotion]);
+                    tv_dap.setVisibility(View.VISIBLE);
+                }
             }
         });
 

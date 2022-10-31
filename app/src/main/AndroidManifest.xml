@@ -43,7 +43,9 @@
             android:exported="false" />
         <activity
             android:name=".Agreement_1"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".Answer_emo"
             android:exported="false" />
@@ -67,9 +69,9 @@
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".Join"
