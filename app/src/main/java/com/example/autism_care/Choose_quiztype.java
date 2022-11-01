@@ -20,17 +20,17 @@ public class Choose_quiztype extends AppCompatActivity {
         tv_txt = findViewById(R.id.tv_txt);
 
         tv_mix.setOnClickListener(view -> {
-            Intent intent = new Intent(Choose_quiztype.this, Quiz_camera.class);
+            Intent intent = new Intent(Choose_quiztype.this, Quiz_mix.class);
             startActivity(intent);
         });
 
         tv_img.setOnClickListener(view -> {
-            Intent intent = new Intent(Choose_quiztype.this, Quiz_camera.class);
+            Intent intent = new Intent(Choose_quiztype.this, Quiz_img.class);
             startActivity(intent);
         });
 
         tv_txt.setOnClickListener(view -> {
-            Intent intent = new Intent(Choose_quiztype.this, Quiz_camera.class);
+            Intent intent = new Intent(Choose_quiztype.this, Quiz_txt.class);
             startActivity(intent);
         });
 

@@ -32,7 +32,7 @@ public class Pic_ready extends AppCompatActivity {
         });
 
         tv_quiz.setOnClickListener(view -> {
-            Intent intent = new Intent(Pic_ready.this, Quiz_mix.class);
+            Intent intent = new Intent(Pic_ready.this, Quiz_btn.class);
             startActivity(intent);
         });
 

@@ -34,11 +34,13 @@ public class Answer_emo extends AppCompatActivity {
         int emo = getIntent().getIntExtra("emotion", 0);
         Bitmap image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
 
+        String[] list = {"기쁨😊이", "불안😰이", "분노😡가", "중립😐이", "당황😰이", "상처😥가", "슬픔😭이"};
+
         // 넘어온게 값 result이 1
-        // ar[] = [해피, 세드, 어쩌구]
+        // ar[] = 'happy', 'anxious', 'angry', 'neutral', 'embarrassed', 'hurt', 'sad'
         // emo = ar[result]
         iv_emotion.setImageBitmap(image);
-        tv_answer.setText("넘어온 감정 : "+emo);
+        tv_answer.setText(list[emo]+" 느껴져요");
 
     }
 }

@@ -19,6 +19,7 @@ public class Main extends AppCompatActivity {
         tv_emotion = findViewById(R.id.tv_emotion);
         tv_mypage = findViewById(R.id.tv_mypage);
 
+
         tv_face.setOnClickListener(view -> {
             Intent intent = new Intent(Main.this, Pic_ready.class);
             startActivity(intent);
