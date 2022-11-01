@@ -105,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/button_box_long"
-                        android:padding="20dp"></LinearLayout>
+                        android:padding="20dp"/>
 
                     <TextView
                         android:id="@+id/textView15"
@@ -141,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/button_box_long"
-                        android:padding="20dp"></LinearLayout>
+                        android:padding="20dp"/>
 
                     <TextView
                         android:id="@+id/textView12"
@@ -161,6 +161,11 @@
                     android:text="날짜별 정답 그래프"
                     android:textColor="#CE3E3E"
                     android:textSize="30dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id = "@+id/Chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
 
             </LinearLayout>
