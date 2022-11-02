@@ -23,9 +23,9 @@
         android:id="@+id/scrollView3"
         android:layout_width="383dp"
         android:layout_height="655dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mypagetitle"
@@ -56,12 +56,15 @@
                         android:text="사진 + 글씨"
                         android:textSize="20dp" />
 
-                    <LinearLayout
+                    <ProgressBar
+                        android:id="@+id/progress1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:progressDrawable="@drawable/custom_progressbar"
+                        android:progress="50"
                         android:layout_margin="5dp"
-                        android:background="@drawable/button_box_long"
-                        android:padding="20dp" />
+                        android:scaleY="1.5"/>
 
                     <TextView
                         android:id="@+id/textView7"
@@ -78,12 +81,15 @@
                         android:text="사진"
                         android:textSize="20dp" />
 
-                    <LinearLayout
+                    <ProgressBar
+                        android:id="@+id/progress2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:progressDrawable="@drawable/custom_progressbar"
+                        android:progress="25"
                         android:layout_margin="5dp"
-                        android:background="@drawable/button_box_long"
-                        android:padding="20dp" />
+                        android:scaleY="1.5"/>
 
                     <TextView
                         android:id="@+id/textView10"
@@ -100,12 +106,15 @@
                         android:text="글씨"
                         android:textSize="20dp" />
 
-                    <LinearLayout
+                    <ProgressBar
+                        android:id="@+id/progress3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:progressDrawable="@drawable/custom_progressbar"
+                        android:progress="0"
                         android:layout_margin="5dp"
-                        android:background="@drawable/button_box_long"
-                        android:padding="20dp"/>
+                        android:scaleY="1.5"/>
 
                     <TextView
                         android:id="@+id/textView15"
@@ -136,12 +145,15 @@
                         android:text="퀴즈로 감정 맞추기"
                         android:textSize="20dp" />
 
-                    <LinearLayout
+                    <ProgressBar
+                        android:id="@+id/progress4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:progressDrawable="@drawable/custom_progressbar"
+                        android:progress="100"
                         android:layout_margin="5dp"
-                        android:background="@drawable/button_box_long"
-                        android:padding="20dp"/>
+                        android:scaleY="1.5"/>
 
                     <TextView
                         android:id="@+id/textView12"
@@ -160,16 +172,15 @@
                     android:gravity="center"
                     android:text="날짜별 정답 그래프"
                     android:textColor="#CE3E3E"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:layout_margin="10dp"/>
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id = "@+id/Chart"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
+                    android:layout_height="300dp"/>
 
             </LinearLayout>
-
 
     </ScrollView>
 
