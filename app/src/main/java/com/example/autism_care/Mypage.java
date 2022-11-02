@@ -1,17 +1,21 @@
 package com.example.autism_care;
 
+import static android.net.wifi.WpsInfo.LABEL;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.util.ArrayList;
 
@@ -30,21 +34,34 @@ public class Mypage extends AppCompatActivity {
 
         //초기화
         lineChart = (LineChart) findViewById(R.id.Chart);
+        lineChart.setExtraBottomOffset(15f); //간격
+        lineChart.getDescription().setEnabled(false); //chart 밑에 description
 
-     /*   //x축
+        //차트의 범례
+        Legend legend = lineChart.getLegend();
+        legend.setForm(Legend.LegendForm.LINE);
+        legend.setXEntrySpace(15);
+        legend.setFormToTextSpace(10);
+
+        //x축
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawGridLines(false);
-        xAxis.setDrawAxisLine(false);
-        xAxis.setSpaceMax(6f);
-        xAxis.setSpaceMin(1f);*/
-        // 축을 숫자가 아니라 날짜로 표시
-        //xAxis.setValueFormatter(new IndexAxisValueFormatter(List_localDateStr));
 
-        /*//y축
+        xAxis.setSpaceMax(4f);
+        xAxis.setSpaceMin(1f);
+        // 축을 숫자가 아니라 날짜로 표시
+/*        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                int range;
+                return LABEL[range][(int) value];
+            }
+        });*/
+
+        //y축
         YAxis yAxis = lineChart.getAxisLeft();
-        yAxis.setSpaceMax(10f);
-        yAxis.setSpaceMin(0f);*/
+        yAxis.setSpaceMax(1f);
+        yAxis.setSpaceMin(0f);
 
         //데이터를 담을 Arraylist
         ArrayList<Entry> chart1 = new ArrayList<>(); //사진+글씨
