@@ -1,6 +1,7 @@
 package com.example.autism_care;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,9 @@ public class Choose_quiztype extends AppCompatActivity {
         tv_mix = findViewById(R.id.tv_mix);
         tv_img = findViewById(R.id.tv_img);
         tv_txt = findViewById(R.id.tv_txt);
+
+
+        ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.CAMERA}, 1);
 
         tv_mix.setOnClickListener(view -> {
             Intent intent = new Intent(Choose_quiztype.this, Quiz_mix.class);

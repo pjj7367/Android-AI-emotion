@@ -56,21 +56,23 @@ public class Quiz_btn extends AppCompatActivity {
         tv_sad = findViewById(R.id.tv_sad);
         tv_angry = findViewById(R.id.tv_angry);
         tv_hurt = findViewById(R.id.tv_hurt);
-        tv_dap = findViewById(R.id.tv_dap);
+        tv_dap = findViewById(R.id.tv_txt_dap);
 
         tv_dap.setVisibility(View.INVISIBLE);
 
+        quiz_btn(select, "True");
 
         tv_happy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 select = 0;
 
-                quiz_btn(select, "True");
                 if (emotion == select){
+                    quiz_btn(select, "True");
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
+                    quiz_btn(select, "True");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -89,7 +91,7 @@ public class Quiz_btn extends AppCompatActivity {
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
-                    quiz_btn(select, "False");
+                    quiz_btn(select, "True");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -107,7 +109,7 @@ public class Quiz_btn extends AppCompatActivity {
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
-                    quiz_btn(select, "False");
+                    quiz_btn(select, "True");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -124,7 +126,7 @@ public class Quiz_btn extends AppCompatActivity {
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
-                    quiz_btn(select, "False");
+                    quiz_btn(select, "True");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -141,7 +143,7 @@ public class Quiz_btn extends AppCompatActivity {
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
-                    quiz_btn(select, "False");
+                    quiz_btn(select, "True");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -158,7 +160,7 @@ public class Quiz_btn extends AppCompatActivity {
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
-                    quiz_btn(select, "False");
+                    quiz_btn(select, "True");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -183,7 +185,7 @@ public class Quiz_btn extends AppCompatActivity {
             //비트맵 이미지를 byte로 변환 -> base64형태로 변환
             // imageString = Base64.encodeToString(byteArray, Base64.DEFAULT);
             //base64형태로 변환된 이미지 데이터를 플라스크 서버로 전송
-            String flask_url = "http://10.0.2.2:5000/quiz_btn";
+            String flask_url = "http://192.168.0.12:5000/quiz_btn";
             progress = new ProgressDialog(Quiz_btn.this);
             progress.setMessage("Uploading...");
             progress.show();

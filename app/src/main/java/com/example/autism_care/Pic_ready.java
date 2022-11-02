@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,8 @@ public class Pic_ready extends AppCompatActivity {
         app = (MyApp) getApplication();
 
         id = app.ID;
-        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+        Log.e("Pic_ready", "id: " + id);
 
         tv_face.setOnClickListener(view -> {
             Intent intent = new Intent(Pic_ready.this, Choose_quiztype.class);
