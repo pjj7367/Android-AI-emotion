@@ -66,7 +66,7 @@ public class Login extends AppCompatActivity {
     private void sendLogin(String id, String pw) {
 
         // flask 연결
-        String flask_url = "http://10.0.2.2:5000/login";
+        String flask_url = "http://192.168.0.12:5000/login";
 
         StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                 response -> {
@@ -92,6 +92,7 @@ public class Login extends AppCompatActivity {
                 },
                 error -> {
                     progress.dismiss();
+                    Log.e("로그인", "Some error occurred -> "+error);
                     Toast.makeText(Login.this, "Some error occurred -> "+error, Toast.LENGTH_LONG).show();
                 })
         {
