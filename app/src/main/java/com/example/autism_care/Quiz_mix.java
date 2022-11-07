@@ -39,13 +39,13 @@ public class Quiz_mix extends AppCompatActivity {
     ImageView iv_emotion;
     TextView tv_emotion, tv_txt_dap;
     PreviewView pv_camera;
-    String imageString;
+    String imageString, id, bool;
     ProgressDialog progress;
     RequestQueue queue;
     Handler handler;
     Runnable runnable;
     MyApp app;
-    int predict, emotion;
+    int predict, emotion, type;
 
     String[] emotion_list = {"기쁨", "불안", "당황",  "슬픔",  "분노", "상처"};
     String[] tv_dap_ok = {"기쁜표정 \n 정답입니다❤", "불안표정 \n 정답입니다❤", "당황표정 \n 정답입니다❤", "슬픈표정 \n 정답입니다❤", "분노표정 \n 정답입니다❤", "상처표정 \n 정답입니다❤"};
@@ -63,6 +63,9 @@ public class Quiz_mix extends AppCompatActivity {
         pv_camera = findViewById(R.id.pv_camera);
         tv_txt_dap = findViewById(R.id.tv_txt_dap);
         app = (MyApp) getApplication();
+        id = app.ID;
+
+        type = 0;
 
         quiz_btn("True");
 
@@ -193,8 +196,45 @@ public class Quiz_mix extends AppCompatActivity {
             queue = Volley.newRequestQueue(Quiz_mix.this);
             queue.add(request);
 
-        } else if (mode.equals("False")) { // db에 정답 넣기
+        } else if (mode.equals("False")) {
+            // db에 정답 넣기
             String id = app.ID;
+
+            String flask_url = "http://192.168.0.12:5000/quiz_btn";
+
+            StringRequest request = new StringRequest(Request.Method.POST, flask_url,
+                    response -> {
+                        Log.e("flask", "response: " + response);
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            String status_json = obj.optString("status");
+
+                            // expected OK
+                            Log.e("flask", "status: " + status_json);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    error -> {
+                        Log.e("QUIZ", "quiz_btn: " + error);
+                        Toast.makeText(Quiz_mix.this, "Some error occurred -> " + error, Toast.LENGTH_LONG).show();
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("mode", mode);
+                    params.put("id", id);
+                    params.put("bool", bool);
+                    params.put("emotion", String.valueOf(emotion));
+                    params.put("type", String.valueOf(type));
+
+                    return params;
+                }
+            };
+
+            queue = Volley.newRequestQueue(Quiz_mix.this);
+            queue.add(request);
         }
     }
 
@@ -217,9 +257,13 @@ public class Quiz_mix extends AppCompatActivity {
                         Log.e("android", "emotion: " + emotion);
 
                         if (predict == emotion) {
+                            bool = "True";
+                            quiz_btn("False");
                             tv_txt_dap.setText(tv_dap_ok[predict]);
                             tv_txt_dap.setVisibility(View.VISIBLE);
                         } else {
+                            bool = "False";
+                            quiz_btn("False");
                             tv_txt_dap.setText(tv_dap_no);
                             tv_txt_dap.setVisibility(View.VISIBLE);
                         }
