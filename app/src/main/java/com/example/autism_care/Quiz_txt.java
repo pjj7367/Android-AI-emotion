@@ -37,12 +37,13 @@ public class Quiz_txt extends AppCompatActivity {
 
     TextView tv_answer, tv_txt_dap;
     PreviewView pv_camera;
-    String imageString;
+    String imageString, id, bool;
     ProgressDialog progress;
     RequestQueue queue;
     Handler handler;
     Runnable runnable;
-    int predict, label;
+    MyApp app;
+    int predict, label, type;
 
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
@@ -59,6 +60,11 @@ public class Quiz_txt extends AppCompatActivity {
         tv_answer = findViewById(R.id.tv_answer);
         tv_txt_dap = findViewById(R.id.tv_txt_dap);
         pv_camera = findViewById(R.id.pv_camera);
+
+        app = (MyApp) getApplication();
+        id = app.ID;
+
+        type = 2;
 
 
         Random random = new Random();
@@ -142,6 +148,49 @@ public class Quiz_txt extends AppCompatActivity {
         pv_camera.setScaleType(PreviewView.ScaleType.FILL_CENTER);
     }
 
+    public void quiz_btn(String mode) {
+        if (mode.equals("False")) {
+            // db에 정답 넣기
+            String id = app.ID;
+
+            String flask_url = "http://192.168.0.12:5000/quiz_btn";
+
+            StringRequest request = new StringRequest(Request.Method.POST, flask_url,
+                    response -> {
+                        Log.e("flask", "response: " + response);
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            String status_json = obj.optString("status");
+
+                            // expected OK
+                            Log.e("flask", "status: " + status_json);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    error -> {
+                        Log.e("QUIZ", "quiz_btn: " + error);
+                        Toast.makeText(Quiz_txt.this, "Some error occurred -> " + error, Toast.LENGTH_LONG).show();
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("mode", mode);
+                    params.put("id", id);
+                    params.put("bool", bool);
+                    params.put("emotion", String.valueOf(label));
+                    params.put("type", String.valueOf(type));
+
+                    return params;
+                }
+            };
+
+            queue = Volley.newRequestQueue(Quiz_txt.this);
+            queue.add(request);
+        }
+    }
+
     //이미지 flask로 전송
     private void sendImage(byte[] byteArray) {
         //비트맵 이미지를 byte로 변환 -> base64형태로 변환
@@ -161,9 +210,13 @@ public class Quiz_txt extends AppCompatActivity {
                         Log.e("android", "label: " + label);
 
                         if (predict == label) {
+                            bool = "True";
+                            quiz_btn("False");
                             tv_txt_dap.setText(tv_dap_ok[predict]);
                             tv_txt_dap.setVisibility(View.VISIBLE);
                         } else {
+                            bool = "False";
+                            quiz_btn("False");
                             tv_txt_dap.setText(tv_dap_no);
                             tv_txt_dap.setVisibility(View.VISIBLE);
                         }

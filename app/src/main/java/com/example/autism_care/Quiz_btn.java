@@ -28,17 +28,18 @@ public class Quiz_btn extends AppCompatActivity {
 
     ImageView iv_emotion;
     TextView tv_happy, tv_embarrassed, tv_anxious, tv_sad, tv_angry, tv_hurt, tv_dap;
-    int select, emotion;
+    int select, emotion, type;
 
 
     String[] tv_dap_ok = {"기쁜표정 \n 정답입니다❤","불안표정 \n 정답입니다❤","당황표정 \n 정답입니다❤","슬픈표정 \n 정답입니다❤","분노표정 \n 정답입니다❤","상처표정 \n 정답입니다❤"};
     String[] tv_dap_no = {"틀렸습니다 \n 답은 기쁨!","틀렸습니다 \n 답은 불안!","틀렸습니다 \n 답은 당황!","틀렸습니다 \n 답은 슬픔!","틀렸습니다 \n 답은 분노!","틀렸습니다 \n 답은 상처!",};
     // 통신
     Bitmap bitmap;
-    String imageString;
+    String id, bool;
     ProgressDialog progress;
     RequestQueue queue;
     MyApp app;
+
 
 
     @Override
@@ -47,7 +48,10 @@ public class Quiz_btn extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_btn);
 
         select = 0;
+        type = 3;
+
         app = (MyApp) getApplication();
+        id = app.ID;
 
         iv_emotion = findViewById(R.id.iv_emotion);
         tv_happy = findViewById(R.id.tv_happy);
@@ -69,10 +73,14 @@ public class Quiz_btn extends AppCompatActivity {
 
                 if (emotion == select){
                     quiz_btn(select, "True");
+                    bool = "True";
+                    quiz_btn(select, "False");
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
                     quiz_btn(select, "True");
+                    bool = "False";
+                    quiz_btn(select, "False");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -88,10 +96,14 @@ public class Quiz_btn extends AppCompatActivity {
 
                 if (emotion == select){
                     quiz_btn(select, "True");
+                    bool = "True";
+                    quiz_btn(select, "False");
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
                     quiz_btn(select, "True");
+                    bool = "False";
+                    quiz_btn(select, "False");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -106,10 +118,14 @@ public class Quiz_btn extends AppCompatActivity {
 
                 if (emotion == select){
                     quiz_btn(select, "True");
+                    bool = "True";
+                    quiz_btn(select, "False");
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
                     quiz_btn(select, "True");
+                    bool = "False";
+                    quiz_btn(select, "False");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -123,10 +139,14 @@ public class Quiz_btn extends AppCompatActivity {
 
                 if (emotion == select){
                     quiz_btn(select, "True");
+                    bool = "True";
+                    quiz_btn(select, "False");
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
                     quiz_btn(select, "True");
+                    bool = "False";
+                    quiz_btn(select, "False");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -140,10 +160,14 @@ public class Quiz_btn extends AppCompatActivity {
 
                 if (emotion == select){
                     quiz_btn(select, "True");
+                    bool = "True";
+                    quiz_btn(select, "False");
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
                     quiz_btn(select, "True");
+                    bool = "False";
+                    quiz_btn(select, "False");
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -157,10 +181,16 @@ public class Quiz_btn extends AppCompatActivity {
 
                 if (emotion == select){
                     quiz_btn(select, "True");
+                    bool = "True";
+                    quiz_btn(select, "False");
+
                     tv_dap.setText(tv_dap_ok[select]);
                     tv_dap.setVisibility(View.VISIBLE);
                 } else {
                     quiz_btn(select, "True");
+                    bool = "False";
+                    quiz_btn(select, "False");
+
                     tv_dap.setText(tv_dap_no[emotion]);
                     tv_dap.setVisibility(View.VISIBLE);
                 }
@@ -210,8 +240,8 @@ public class Quiz_btn extends AppCompatActivity {
                         }
                     },
                     error -> {
-                        Log.e("QUIZ", "quiz_btn: " + error);
                         progress.dismiss();
+                        Log.e("QUIZ", "quiz_btn: " + error);
                         Toast.makeText(Quiz_btn.this, "Some error occurred -> "+error, Toast.LENGTH_LONG).show();
                     })
             {
@@ -227,8 +257,46 @@ public class Quiz_btn extends AppCompatActivity {
             queue = Volley.newRequestQueue(Quiz_btn.this);
             queue.add(request);
 
-        } else if(mode.equals("False")){ // db에 정답 넣기
+        } else if(mode.equals("False")){
+            // db에 정답 넣기
             String id = app.ID;
+
+            String flask_url = "http://192.168.0.12:5000/quiz_btn";
+
+            StringRequest request = new StringRequest(Request.Method.POST, flask_url,
+                    response -> {
+                        Log.e("flask", "response: " + response);
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            String status_json = obj.optString("status");
+
+                            // expected OK
+                            Log.e("flask", "status: " + status_json);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    error -> {
+                        Log.e("QUIZ", "quiz_btn: " + error);
+                        Toast.makeText(Quiz_btn.this, "Some error occurred -> "+error, Toast.LENGTH_LONG).show();
+                    })
+            {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("mode", mode);
+                    params.put("id", id);
+                    params.put("bool", bool);
+                    params.put("emotion", String.valueOf(emotion));
+                    params.put("type", String.valueOf(type));
+
+                    return params;
+                }
+            };
+
+            queue = Volley.newRequestQueue(Quiz_btn.this);
+            queue.add(request);
         }
     }
 }
