@@ -32,15 +32,15 @@ android {
 dependencies {
 
     // add for flask
-    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.10'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10'
     // ----
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     // implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.7.1'
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
-    implementation 'com.android.volley:volley:1.2.0'
+    implementation 'com.android.volley:volley:1.2.1'
     implementation 'androidx.camera:camera-view:1.1.0'
     implementation 'androidx.camera:camera-lifecycle:1.1.0'
     implementation 'androidx.camera:camera-core:1.1.0'
@@ -48,11 +48,15 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation "com.google.guava:guava:31.0.1-android"
+    implementation 'com.google.guava:guava:31.1-jre'
 
     // To use CallbackToFutureAdapter
     implementation "androidx.concurrent:concurrent-futures:1.1.0"
 
     // Kotlin
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-guava:1.6.0"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-guava:1.6.4'
+
+    // 그래프
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 }

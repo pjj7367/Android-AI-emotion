@@ -10,7 +10,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // 그래프
+        maven { url 'https://jitpack.io' }
     }
+
 }
 rootProject.name = "Autism_care"
 include ':app'
