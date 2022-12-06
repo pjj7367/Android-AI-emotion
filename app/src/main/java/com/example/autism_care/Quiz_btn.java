@@ -215,7 +215,7 @@ public class Quiz_btn extends AppCompatActivity {
             //비트맵 이미지를 byte로 변환 -> base64형태로 변환
             // imageString = Base64.encodeToString(byteArray, Base64.DEFAULT);
             //base64형태로 변환된 이미지 데이터를 플라스크 서버로 전송
-            String flask_url = "http://192.168.0.12:5000/quiz_btn";
+            String flask_url = "http://10.0.2.2:5000/quiz_btn";
             progress = new ProgressDialog(Quiz_btn.this);
             progress.setMessage("Uploading...");
             progress.show();
@@ -261,7 +261,7 @@ public class Quiz_btn extends AppCompatActivity {
             // db에 정답 넣기
             String id = app.ID;
 
-            String flask_url = "http://192.168.0.12:5000/quiz_btn";
+            String flask_url = "http://10.0.2.2:5000/quiz_btn";
 
             StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                     response -> {
