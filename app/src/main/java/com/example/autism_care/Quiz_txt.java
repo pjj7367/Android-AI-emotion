@@ -21,6 +21,7 @@ import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class Quiz_txt extends AppCompatActivity {
     TextView tv_answer, tv_txt_dap;
     PreviewView pv_camera;
     String imageString, id, bool;
+    ProgressBar pro_cnt;
     ProgressDialog progress;
     RequestQueue queue;
     Handler handler;
@@ -60,6 +62,10 @@ public class Quiz_txt extends AppCompatActivity {
         tv_answer = findViewById(R.id.tv_answer);
         tv_txt_dap = findViewById(R.id.tv_txt_dap);
         pv_camera = findViewById(R.id.pv_camera);
+
+        pro_cnt = findViewById(R.id.pro_cnt);
+        pro_cnt.setProgress(0);
+        pro_cnt.setMax(3000);
 
         app = (MyApp) getApplication();
         id = app.ID;
@@ -91,43 +97,47 @@ public class Quiz_txt extends AppCompatActivity {
 
         runnable = new Runnable() {
             public void run() {
-                Bitmap bitmap = pv_camera.getBitmap();
+                pro_cnt.setProgress(pro_cnt.getProgress() + 500);
 
-                if (bitmap != null) {
-                    // need to do tasks on the UI thread
-                    Log.d("capture loop", "run test");
+                if(pro_cnt.getProgress() == 3000){
+                    Bitmap bitmap = pv_camera.getBitmap();
 
-                    progress = new ProgressDialog(Quiz_txt.this);
-                    progress.setMessage("Uploading...");
-                    progress.show();
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    if (bitmap != null) {
+                        // need to do tasks on the UI thread
+                        Log.d("capture loop", "run test");
+
+                        progress = new ProgressDialog(Quiz_txt.this);
+                        progress.setMessage("Uploading...");
+                        progress.show();
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
 
-                    // bitmap -> compress를 사용해서 압축 -> stream에 담기
-                    // stream -> bytearray로 변환
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                    byte[] byteArray = stream.toByteArray();
+                        // bitmap -> compress를 사용해서 압축 -> stream에 담기
+                        // stream -> bytearray로 변환
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                        byte[] byteArray = stream.toByteArray();
 
-                    Log.e("Question_emo", "이미지 크기 : " + byteArray);
+                        Log.e("Question_emo", "이미지 크기 : " + byteArray);
 
-                    sendImage(byteArray);
-                } else {
-                    Log.d("capture loop", "no bitmap");
+                        sendImage(byteArray);
+                    } else {
+                        Log.d("capture loop", "no bitmap");
+                    }
                 }
 
-                handler.postDelayed(this, 5000);
+                handler.postDelayed(this, 500);
             }
         };
 
-        // 첫 화면 자동 실행
-        handler.post(runnable);
+        // 첫 화면 자동 실행 2초 딜레이
+        handler.postDelayed(runnable, 2000);
 
 
         tv_txt_dap.setOnClickListener(v -> {
             tv_txt_dap.setVisibility(View.INVISIBLE);
             label = random.nextInt(6);
             tv_answer.setText(emotion_list[label]);
-            handler.postDelayed(runnable, 4000);
+            handler.postDelayed(runnable, 2000);
         });
     }
 
@@ -153,7 +163,7 @@ public class Quiz_txt extends AppCompatActivity {
             // db에 정답 넣기
             String id = app.ID;
 
-            String flask_url = "http://10.0.2.2:5000/quiz_btn";
+            String flask_url = "http://192.168.0.12:5000/quiz_btn";
 
             StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                     response -> {
@@ -193,17 +203,20 @@ public class Quiz_txt extends AppCompatActivity {
 
     //이미지 flask로 전송
     private void sendImage(byte[] byteArray) {
+        progress.dismiss();
         //비트맵 이미지를 byte로 변환 -> base64형태로 변환
         imageString = Base64.encodeToString(byteArray, Base64.DEFAULT);
         //base64형태로 변환된 이미지 데이터를 플라스크 서버로 전송
-        String flask_url = "http://10.0.2.2:5000/run_model";
+        String flask_url = "http://192.168.0.12:5000/run_model";
 
         StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                 response -> {
-                    progress.dismiss();
                     Log.e("flask", "sendImage: " + response);
 
                     try {
+                        progress.dismiss();
+                        pro_cnt.setProgress(0);
+
                         JSONObject obj = new JSONObject(response);
                         predict = obj.optInt("predict");
                         Log.e("flask", "predict: " + predict);

@@ -51,8 +51,23 @@
         app:layout_constraintHeight_percent="0.35"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintVertical_bias="0.84"
         app:layout_constraintWidth_percent="0.8" />
+
+    <ProgressBar
+        android:id="@+id/pro_cnt"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.8"
+        android:layout_height="wrap_content"
+        android:progress="100"
+        android:progressDrawable="@drawable/custom_progressbar"
+        android:scaleY="1.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/pv_camera"
+        app:layout_constraintStart_toStartOf="@+id/pv_camera"
+        app:layout_constraintTop_toBottomOf="@+id/pv_camera"
+        app:layout_constraintVertical_bias="0.13999999" />
 
     <TextView
         android:id="@+id/tv_txt_dap"

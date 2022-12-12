@@ -1,11 +1,8 @@
 package com.example.autism_care;
 
-import static android.net.wifi.WpsInfo.LABEL;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,10 +21,10 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +44,7 @@ public class Mypage extends AppCompatActivity {
     MyApp app;
     JSONArray jsonArray;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +57,7 @@ public class Mypage extends AppCompatActivity {
         pro_imgtxt = findViewById(R.id.pro_imgtxt);
         pro_img = findViewById(R.id.pro_img);
         pro_txt = findViewById(R.id.pro_txt);
-        pro_quiz = findViewById(R.id.pro_quiz);
+        pro_quiz = findViewById(R.id.pro_cnt);
         app = (MyApp) getApplication();
 
         // 통신중..
@@ -71,8 +69,12 @@ public class Mypage extends AppCompatActivity {
 
         //초기화
         lineChart = (LineChart) findViewById(R.id.Chart);
-        lineChart.setExtraBottomOffset(15f); //간격
+        //lineChart.setExtraBottomOffset(15f); //간격
         lineChart.getDescription().setEnabled(false); //chart 밑에 description
+
+        lineChart.setExtraBottomOffset(15f);
+
+        ArrayList<String> xLabel = new ArrayList<>();
 
         //차트의 범례
         Legend legend = lineChart.getLegend();
@@ -84,16 +86,29 @@ public class Mypage extends AppCompatActivity {
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-        xAxis.setSpaceMax(4f);
+        xAxis.setSpaceMax(1f);
         xAxis.setSpaceMin(1f);
+
+        xLabel.add(" ");
+        xLabel.add("12/9");
+        xLabel.add("12/10");
+        xLabel.add("12/11");
+        xLabel.add("12/12");
+        xLabel.add("12/13");
+        xLabel.add("12/14");
+
         // 축을 숫자가 아니라 날짜로 표시
-/*        xAxis.setValueFormatter(new ValueFormatter() {
+
+        ValueFormatter formatter = new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-                int range;
-                return LABEL[range][(int) value];
+                if(((int)value) < xLabel.size())
+                    return xLabel.get((int) value) ;
+                else
+                    return " ";
             }
-        });*/
+        };
+        xAxis.setValueFormatter(formatter);
 
         //y축
         YAxis yAxis = lineChart.getAxisLeft();
@@ -111,19 +126,30 @@ public class Mypage extends AppCompatActivity {
         chart1.add(new Entry(1, 1)); //chart1에 좌표 데이터를 담음
         chart1.add(new Entry(2, 2));
         chart1.add(new Entry(3, 3));
-        chart1.add(new Entry(3, 3));
+        chart1.add(new Entry(4, 3));
+        chart1.add(new Entry(5, 4));
+        chart1.add(new Entry(6, 5));
 
         chart2.add(new Entry(1, 2)); //chart2에 좌표 데이터를 담음
         chart2.add(new Entry(2, 3));
         chart2.add(new Entry(3, 8));
+        chart2.add(new Entry(4, 6));
+        chart2.add(new Entry(5, 4));
+        chart2.add(new Entry(6, 4));
 
         chart3.add(new Entry(1, 5)); //chart3에 좌표 데이터를 담음
         chart3.add(new Entry(2, 7));
         chart3.add(new Entry(3, 9));
+        chart3.add(new Entry(4, 8));
+        chart3.add(new Entry(5, 7));
+        chart3.add(new Entry(6, 8));
 
         chart4.add(new Entry(1, 4)); //chart4에 좌표 데이터를 담음
         chart4.add(new Entry(2, 8));
         chart4.add(new Entry(3, 10));
+        chart4.add(new Entry(4, 6));
+        chart4.add(new Entry(5, 8));
+        chart4.add(new Entry(6, 9));
 
         LineData chartData = new LineData(); // 차트에 담길 데이터
 
@@ -156,8 +182,9 @@ public class Mypage extends AppCompatActivity {
     private void mypage(String id) {
 
         // flask 연결
-        String flask_url = "http://10.0.2.2:5000/mypage";
+        String flask_url = "http://192.168.0.12:5000/mypage";
         // String flask_url = "http://192.168.0.12:5000/mypage";
+        // 192.168.0.12:5000
         
         StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                 response -> {
