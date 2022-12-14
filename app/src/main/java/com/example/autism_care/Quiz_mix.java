@@ -165,7 +165,7 @@ public class Quiz_mix extends AppCompatActivity {
             //비트맵 이미지를 byte로 변환 -> base64형태로 변환
             // imageString = Base64.encodeToString(byteArray, Base64.DEFAULT);
             //base64형태로 변환된 이미지 데이터를 플라스크 서버로 전송
-            String flask_url = "http://192.168.0.12:5000/quiz_btn";
+            String flask_url = "http://43.200.131.5:5000/quiz_btn";
             progress = new ProgressDialog(Quiz_mix.this);
 //            progress.setMessage("Uploading...");
 //            progress.show();
@@ -204,6 +204,11 @@ public class Quiz_mix extends AppCompatActivity {
                 }
             };
 
+            request.setRetryPolicy((new com.android.volley.DefaultRetryPolicy(
+                    70000,
+                    1,
+                    4)));
+
             queue = Volley.newRequestQueue(Quiz_mix.this);
             queue.add(request);
 
@@ -211,7 +216,7 @@ public class Quiz_mix extends AppCompatActivity {
             // db에 정답 넣기
             String id = app.ID;
 
-            String flask_url = "http://192.168.0.12:5000/quiz_btn";
+            String flask_url = "http://43.200.131.5:5000/quiz_btn";
 
             StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                     response -> {
@@ -245,6 +250,11 @@ public class Quiz_mix extends AppCompatActivity {
                 }
             };
 
+            request.setRetryPolicy((new com.android.volley.DefaultRetryPolicy(
+                    70000,
+                    1,
+                    4)));
+
             queue = Volley.newRequestQueue(Quiz_mix.this);
             queue.add(request);
         }
@@ -256,7 +266,7 @@ public class Quiz_mix extends AppCompatActivity {
         //비트맵 이미지를 byte로 변환 -> base64형태로 변환
         imageString = Base64.encodeToString(byteArray, Base64.DEFAULT);
         //base64형태로 변환된 이미지 데이터를 플라스크 서버로 전송
-        String flask_url = "http://192.168.0.12:5000/run_model";
+        String flask_url = "http://43.200.131.5:5000/run_model";
 
         StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                 response -> {
@@ -303,6 +313,11 @@ public class Quiz_mix extends AppCompatActivity {
                 return params;
             }
         };
+
+        request.setRetryPolicy((new com.android.volley.DefaultRetryPolicy(
+                70000,
+                1,
+                4)));
 
         queue = Volley.newRequestQueue(Quiz_mix.this);
         queue.add(request);

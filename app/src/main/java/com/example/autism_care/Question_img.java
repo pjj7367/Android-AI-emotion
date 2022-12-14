@@ -105,7 +105,7 @@ public class Question_img extends AppCompatActivity {
         //비트맵 이미지를 byte로 변환 -> base64형태로 변환
         imageString = Base64.encodeToString(byteArray, Base64.DEFAULT);
         //base64형태로 변환된 이미지 데이터를 플라스크 서버로 전송
-        String flask_url = "http://192.168.0.12:5000/run_model";
+        String flask_url = "http://43.200.131.5:5000/run_model";
 
         StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                 response -> {
@@ -136,6 +136,11 @@ public class Question_img extends AppCompatActivity {
                 return params;
             }
         };
+
+        request.setRetryPolicy((new com.android.volley.DefaultRetryPolicy(
+                70000,
+                1,
+                4)));
 
         queue = Volley.newRequestQueue(Question_img.this);
         queue.add(request);

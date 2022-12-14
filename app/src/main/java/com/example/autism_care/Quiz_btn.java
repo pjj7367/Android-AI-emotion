@@ -31,15 +31,14 @@ public class Quiz_btn extends AppCompatActivity {
     int select, emotion, type;
 
 
-    String[] tv_dap_ok = {"기쁜표정 \n 정답입니다❤","불안표정 \n 정답입니다❤","당황표정 \n 정답입니다❤","슬픈표정 \n 정답입니다❤","분노표정 \n 정답입니다❤","상처표정 \n 정답입니다❤"};
-    String[] tv_dap_no = {"틀렸습니다 \n 답은 기쁨!","틀렸습니다 \n 답은 불안!","틀렸습니다 \n 답은 당황!","틀렸습니다 \n 답은 슬픔!","틀렸습니다 \n 답은 분노!","틀렸습니다 \n 답은 상처!",};
+    String[] tv_dap_ok = {"기쁜표정 \n 정답입니다❤", "불안표정 \n 정답입니다❤", "당황표정 \n 정답입니다❤", "슬픈표정 \n 정답입니다❤", "분노표정 \n 정답입니다❤", "상처표정 \n 정답입니다❤"};
+    String[] tv_dap_no = {"틀렸습니다 \n 답은 기쁨!", "틀렸습니다 \n 답은 불안!", "틀렸습니다 \n 답은 당황!", "틀렸습니다 \n 답은 슬픔!", "틀렸습니다 \n 답은 분노!", "틀렸습니다 \n 답은 상처!",};
     // 통신
     Bitmap bitmap;
     String id, bool;
     ProgressDialog progress;
     RequestQueue queue;
     MyApp app;
-
 
 
     @Override
@@ -71,7 +70,7 @@ public class Quiz_btn extends AppCompatActivity {
             public void onClick(View view) {
                 select = 0;
 
-                if (emotion == select){
+                if (emotion == select) {
                     quiz_btn(select, "True");
                     bool = "True";
                     quiz_btn(select, "False");
@@ -94,7 +93,7 @@ public class Quiz_btn extends AppCompatActivity {
                 select = 1;
 
 
-                if (emotion == select){
+                if (emotion == select) {
                     quiz_btn(select, "True");
                     bool = "True";
                     quiz_btn(select, "False");
@@ -116,7 +115,7 @@ public class Quiz_btn extends AppCompatActivity {
                 select = 2;
 
 
-                if (emotion == select){
+                if (emotion == select) {
                     quiz_btn(select, "True");
                     bool = "True";
                     quiz_btn(select, "False");
@@ -135,9 +134,9 @@ public class Quiz_btn extends AppCompatActivity {
         tv_sad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               select = 3;
+                select = 3;
 
-                if (emotion == select){
+                if (emotion == select) {
                     quiz_btn(select, "True");
                     bool = "True";
                     quiz_btn(select, "False");
@@ -158,7 +157,7 @@ public class Quiz_btn extends AppCompatActivity {
             public void onClick(View view) {
                 select = 4;
 
-                if (emotion == select){
+                if (emotion == select) {
                     quiz_btn(select, "True");
                     bool = "True";
                     quiz_btn(select, "False");
@@ -179,7 +178,7 @@ public class Quiz_btn extends AppCompatActivity {
             public void onClick(View view) {
                 select = 5;
 
-                if (emotion == select){
+                if (emotion == select) {
                     quiz_btn(select, "True");
                     bool = "True";
                     quiz_btn(select, "False");
@@ -215,7 +214,7 @@ public class Quiz_btn extends AppCompatActivity {
             //비트맵 이미지를 byte로 변환 -> base64형태로 변환
             // imageString = Base64.encodeToString(byteArray, Base64.DEFAULT);
             //base64형태로 변환된 이미지 데이터를 플라스크 서버로 전송
-            String flask_url = "http://192.168.0.12:5000/quiz_btn";
+            String flask_url = "http://43.200.131.5:5000/quiz_btn";
             progress = new ProgressDialog(Quiz_btn.this);
             progress.setMessage("Uploading...");
             progress.show();
@@ -242,9 +241,8 @@ public class Quiz_btn extends AppCompatActivity {
                     error -> {
                         progress.dismiss();
                         Log.e("QUIZ", "quiz_btn: " + error);
-                        Toast.makeText(Quiz_btn.this, "Some error occurred -> "+error, Toast.LENGTH_LONG).show();
-                    })
-            {
+                        Toast.makeText(Quiz_btn.this, "Some error occurred -> " + error, Toast.LENGTH_LONG).show();
+                    }) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
@@ -252,16 +250,23 @@ public class Quiz_btn extends AppCompatActivity {
 
                     return params;
                 }
+
+
             };
+
+            request.setRetryPolicy((new com.android.volley.DefaultRetryPolicy(
+                    70000,
+                    1,
+                    4)));
 
             queue = Volley.newRequestQueue(Quiz_btn.this);
             queue.add(request);
 
-        } else if(mode.equals("False")){
+        } else if (mode.equals("False")) {
             // db에 정답 넣기
             String id = app.ID;
 
-            String flask_url = "http://192.168.0.12:5000/quiz_btn";
+            String flask_url = "http://43.200.131.5:5000/quiz_btn";
 
             StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                     response -> {
@@ -279,9 +284,8 @@ public class Quiz_btn extends AppCompatActivity {
                     },
                     error -> {
                         Log.e("QUIZ", "quiz_btn: " + error);
-                        Toast.makeText(Quiz_btn.this, "Some error occurred -> "+error, Toast.LENGTH_LONG).show();
-                    })
-            {
+                        Toast.makeText(Quiz_btn.this, "Some error occurred -> " + error, Toast.LENGTH_LONG).show();
+                    }) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
@@ -294,6 +298,11 @@ public class Quiz_btn extends AppCompatActivity {
                     return params;
                 }
             };
+
+            request.setRetryPolicy((new com.android.volley.DefaultRetryPolicy(
+                    70000,
+                    1,
+                    4)));
 
             queue = Volley.newRequestQueue(Quiz_btn.this);
             queue.add(request);

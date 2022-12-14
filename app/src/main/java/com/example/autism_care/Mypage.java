@@ -89,9 +89,9 @@ public class Mypage extends AppCompatActivity {
     private void mypage(String id) {
 
         // flask 연결
-        String flask_url = "http://192.168.0.12:5000/mypage";
-        // String flask_url = "http://192.168.0.12:5000/mypage";
-        // 192.168.0.12:5000
+        String flask_url = "http://43.200.131.5:5000/mypage";
+        // String flask_url = "http://43.200.131.5:5000/mypage";
+        // 43.200.131.5:5000
         
         StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                 response -> {
@@ -144,9 +144,9 @@ public class Mypage extends AppCompatActivity {
     private void mygraph(String id) {
 
         // flask 연결
-        String flask_url = "http://192.168.0.12:5000/mygraph";
-        // String flask_url = "http://192.168.0.12:5000/mypage";
-        // 192.168.0.12:5000
+        String flask_url = "http://43.200.131.5:5000/mygraph";
+        // String flask_url = "http://43.200.131.5:5000/mypage";
+        // 43.200.131.5:5000
 
         StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                 response -> {

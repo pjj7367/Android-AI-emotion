@@ -100,7 +100,7 @@ public class Join extends AppCompatActivity {
     private void sendJoin(String id, String pw, String gender, String age) {
 
         // flask 연결
-        String flask_url = "http://192.168.0.12:5000/join";
+        String flask_url = "http://43.200.131.5:5000/join";
 
         StringRequest request = new StringRequest(Request.Method.POST, flask_url,
                 response -> {
