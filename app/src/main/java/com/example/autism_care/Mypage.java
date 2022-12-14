@@ -25,8 +25,12 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +47,14 @@ public class Mypage extends AppCompatActivity {
     RequestQueue queue;
     MyApp app;
     JSONArray jsonArray;
+
+    ArrayList<Entry> chart1;
+    ArrayList<Entry> chart2;
+    ArrayList<Entry> chart3;
+    ArrayList<Entry> chart4;
+
+    XAxis xAxis;
+    ArrayList<String> xLabel;
 
 
     @Override
@@ -66,116 +78,11 @@ public class Mypage extends AppCompatActivity {
         progress.show();
 
         mypage(app.ID);
+        mygraph(app.ID);
 
         //초기화
         lineChart = (LineChart) findViewById(R.id.Chart);
         //lineChart.setExtraBottomOffset(15f); //간격
-        lineChart.getDescription().setEnabled(false); //chart 밑에 description
-
-        lineChart.setExtraBottomOffset(15f);
-
-        ArrayList<String> xLabel = new ArrayList<>();
-
-        //차트의 범례
-        Legend legend = lineChart.getLegend();
-        legend.setForm(Legend.LegendForm.LINE);
-        legend.setXEntrySpace(15);
-        legend.setFormToTextSpace(10);
-
-        //x축
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-
-        xAxis.setSpaceMax(1f);
-        xAxis.setSpaceMin(1f);
-
-        xLabel.add(" ");
-        xLabel.add("12/9");
-        xLabel.add("12/10");
-        xLabel.add("12/11");
-        xLabel.add("12/12");
-        xLabel.add("12/13");
-        xLabel.add("12/14");
-
-        // 축을 숫자가 아니라 날짜로 표시
-
-        ValueFormatter formatter = new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                if(((int)value) < xLabel.size())
-                    return xLabel.get((int) value) ;
-                else
-                    return " ";
-            }
-        };
-        xAxis.setValueFormatter(formatter);
-
-        //y축
-        YAxis yAxis = lineChart.getAxisLeft();
-        yAxis.setSpaceMax(1f);
-        yAxis.setSpaceMin(0f);
-
-        //데이터를 담을 Arraylist
-        ArrayList<Entry> chart1 = new ArrayList<>(); //사진+글씨
-        ArrayList<Entry> chart2 = new ArrayList<>(); //사진
-        ArrayList<Entry> chart3 = new ArrayList<>(); //글씨
-        ArrayList<Entry> chart4 = new ArrayList<>(); //퀴즈
-
-        // x축 날짜, y축 개수
-        //데이터 숫자 크기
-        chart1.add(new Entry(1, 1)); //chart1에 좌표 데이터를 담음
-        chart1.add(new Entry(2, 2));
-        chart1.add(new Entry(3, 3));
-        chart1.add(new Entry(4, 3));
-        chart1.add(new Entry(5, 4));
-        chart1.add(new Entry(6, 5));
-
-        chart2.add(new Entry(1, 2)); //chart2에 좌표 데이터를 담음
-        chart2.add(new Entry(2, 3));
-        chart2.add(new Entry(3, 8));
-        chart2.add(new Entry(4, 6));
-        chart2.add(new Entry(5, 4));
-        chart2.add(new Entry(6, 4));
-
-        chart3.add(new Entry(1, 5)); //chart3에 좌표 데이터를 담음
-        chart3.add(new Entry(2, 7));
-        chart3.add(new Entry(3, 9));
-        chart3.add(new Entry(4, 8));
-        chart3.add(new Entry(5, 7));
-        chart3.add(new Entry(6, 8));
-
-        chart4.add(new Entry(1, 4)); //chart4에 좌표 데이터를 담음
-        chart4.add(new Entry(2, 8));
-        chart4.add(new Entry(3, 10));
-        chart4.add(new Entry(4, 6));
-        chart4.add(new Entry(5, 8));
-        chart4.add(new Entry(6, 9));
-
-        LineData chartData = new LineData(); // 차트에 담길 데이터
-
-        // DataSet 생성 - 기존에 생성해둔 Entry 리스트를 가져와서 "사진+글씨" 범주로 묶어서 DataSet 만들기
-        // 데이터가 담긴 Arraylist를 LineDataSet으로 변환
-        LineDataSet lineDataSet1 = new LineDataSet(chart1, "사진+글씨");
-        LineDataSet lineDataSet2 = new LineDataSet(chart2, "사진");
-        LineDataSet lineDataSet3 = new LineDataSet(chart3, "글씨");
-        LineDataSet lineDataSet4 = new LineDataSet(chart4, "퀴즈");
-
-        // 해당 LineDataSet의 색 설정 :: 각 Line과 관련된 세팅은 여기서 설정
-        lineDataSet1.setColor(Color.RED);
-        lineDataSet2.setColor(Color.BLUE);
-        lineDataSet3.setColor(Color.GREEN);
-        lineDataSet4.setColor(Color.YELLOW);
-
-        // 해당 LineDataSet을 적용될 차트에 들어갈 DataSet에 넣음
-        chartData.addDataSet(lineDataSet1);
-        chartData.addDataSet(lineDataSet2);
-        chartData.addDataSet(lineDataSet3);
-        chartData.addDataSet(lineDataSet4);
-
-        lineChart.setData(chartData); // 차트에 위의 DataSet을 넣음
-
-        lineChart.invalidate(); // 차트 업데이트
-        lineChart.setTouchEnabled(false); // 차트 터치 disable
     }
 
     //flask로 전송
@@ -219,6 +126,153 @@ public class Mypage extends AppCompatActivity {
                 },
                 error -> {
                     progress.dismiss();
+                    Toast.makeText(Mypage.this, "Some error occurred -> "+error, Toast.LENGTH_LONG).show();
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", id);
+                return params;
+            }
+        };
+
+        queue = Volley.newRequestQueue(Mypage.this);
+        queue.add(request);
+    }
+
+    private void mygraph(String id) {
+
+        // flask 연결
+        String flask_url = "http://192.168.0.12:5000/mygraph";
+        // String flask_url = "http://192.168.0.12:5000/mypage";
+        // 192.168.0.12:5000
+
+        StringRequest request = new StringRequest(Request.Method.POST, flask_url,
+                response -> {
+                    Log.e("mygraph", "response: " + response);
+
+                    try {
+                        JSONObject obj = new JSONObject(response);
+                        JSONArray data = obj.getJSONArray("data");
+                        JSONArray days = obj.getJSONArray("days");
+                        Log.e("mygraph", "data: " + data);
+                        Log.e("mygraph", "days: " + days);
+
+
+
+                        lineChart.getDescription().setEnabled(false); //chart 밑에 description
+                        lineChart.setExtraBottomOffset(15f);
+
+
+                        //차트의 범례
+                        Legend legend = lineChart.getLegend();
+                        legend.setForm(Legend.LegendForm.LINE);
+                        legend.setXEntrySpace(15);
+                        legend.setFormToTextSpace(10);
+
+                        //데이터를 담을 Arraylist
+                        chart1 = new ArrayList<>(); //사진+글씨
+                        chart2 = new ArrayList<>(); //사진
+                        chart3 = new ArrayList<>(); //글씨
+                        chart4 = new ArrayList<>(); //퀴즈
+
+                        //x축
+                        xAxis = lineChart.getXAxis();
+                        xLabel = new ArrayList<>();
+
+                        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
+                        xAxis.setSpaceMax(1f);
+                        xAxis.setSpaceMin(1f);
+
+                        //y축
+                        YAxis yAxis = lineChart.getAxisLeft();
+                        yAxis.setSpaceMax(1f);
+                        yAxis.setSpaceMin(0f);
+
+                        xLabel.add(" ");
+
+                        for (int i = 0; i < days.length(); i++) {
+                            xLabel.add((String) days.get(i));
+                        }
+
+                        // 축을 숫자가 아니라 날짜로 표시
+                        ValueFormatter formatter = new ValueFormatter() {
+                            @Override
+                            public String getFormattedValue(float value) {
+                                if(((int)value) < xLabel.size())
+                                    return xLabel.get((int) value) ;
+                                else
+                                    return " ";
+                            }
+                        };
+                        xAxis.setValueFormatter(formatter);
+
+                        // x축 날짜, y축 개수
+                        //데이터 숫자 크기
+                        JSONArray day4ago_data = (JSONArray) data.get(0);
+                        JSONArray day3ago_data = (JSONArray) data.get(1);
+                        JSONArray day2ago_data = (JSONArray) data.get(2);
+                        JSONArray day1ago_data = (JSONArray) data.get(3);
+                        JSONArray today_data = (JSONArray) data.get(4);
+
+
+                        chart1.add(new Entry(1, day4ago_data.getInt(0)));
+                        chart1.add(new Entry(2, day3ago_data.getInt(0)));
+                        chart1.add(new Entry(3, day2ago_data.getInt(0)));
+                        chart1.add(new Entry(4, day1ago_data.getInt(0)));
+                        chart1.add(new Entry(5, today_data.getInt(0)));
+
+                        chart2.add(new Entry(1, day4ago_data.getInt(1)));
+                        chart2.add(new Entry(2, day3ago_data.getInt(1)));
+                        chart2.add(new Entry(3, day2ago_data.getInt(1)));
+                        chart2.add(new Entry(4, day1ago_data.getInt(1)));
+                        chart2.add(new Entry(5, today_data.getInt(1)));
+
+                        chart3.add(new Entry(1, day4ago_data.getInt(2)));
+                        chart3.add(new Entry(2, day3ago_data.getInt(2)));
+                        chart3.add(new Entry(3, day2ago_data.getInt(2)));
+                        chart3.add(new Entry(4, day1ago_data.getInt(2)));
+                        chart3.add(new Entry(5, today_data.getInt(2)));
+
+                        chart4.add(new Entry(1, day4ago_data.getInt(3)));
+                        chart4.add(new Entry(2, day3ago_data.getInt(3)));
+                        chart4.add(new Entry(3, day2ago_data.getInt(3)));
+                        chart4.add(new Entry(4, day1ago_data.getInt(3)));
+                        chart4.add(new Entry(5, today_data.getInt(3)));
+
+
+                        LineData chartData = new LineData(); // 차트에 담길 데이터
+
+                        // DataSet 생성 - 기존에 생성해둔 Entry 리스트를 가져와서 "사진+글씨" 범주로 묶어서 DataSet 만들기
+                        // 데이터가 담긴 Arraylist를 LineDataSet으로 변환
+                        LineDataSet lineDataSet1 = new LineDataSet(chart1, "사진+글씨");
+                        LineDataSet lineDataSet2 = new LineDataSet(chart2, "사진");
+                        LineDataSet lineDataSet3 = new LineDataSet(chart3, "글씨");
+                        LineDataSet lineDataSet4 = new LineDataSet(chart4, "퀴즈");
+
+                        // 해당 LineDataSet의 색 설정 :: 각 Line과 관련된 세팅은 여기서 설정
+                        lineDataSet1.setColor(Color.RED);
+                        lineDataSet2.setColor(Color.BLUE);
+                        lineDataSet3.setColor(Color.GREEN);
+                        lineDataSet4.setColor(Color.YELLOW);
+
+                        // 해당 LineDataSet을 적용될 차트에 들어갈 DataSet에 넣음
+                        chartData.addDataSet(lineDataSet1);
+                        chartData.addDataSet(lineDataSet2);
+                        chartData.addDataSet(lineDataSet3);
+                        chartData.addDataSet(lineDataSet4);
+
+                        lineChart.setData(chartData); // 차트에 위의 DataSet을 넣음
+
+                        lineChart.invalidate(); // 차트 업데이트
+                        lineChart.setTouchEnabled(false); // 차트 터치 disable
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> {
                     Toast.makeText(Mypage.this, "Some error occurred -> "+error, Toast.LENGTH_LONG).show();
                 })
         {
